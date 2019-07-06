@@ -16,10 +16,15 @@ void swap(int *a, int i, int j) {
 
 void sort(int *a, int size) {
   int i = 0; // 未ソート部分列の先頭インデックス
-  while (i < size) {
+  int flag = 1; // 走査が必要か否か
+  while (flag) {
+    flag = 0;
     for (int j = size - 1; i < j; j--) {
       if (a[j] < a[j - 1]) {
         swap(a, j - 1, j);
+
+        // swapが発生したら再度swapする必要があるかもしれないので、再度走査する
+        flag = 1;
       }
     }
     i++;
