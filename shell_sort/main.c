@@ -22,8 +22,16 @@ void sort_internal(int *a, int n, int g) {
 }
 
 void sort(int *a, int n) {
-  int m = 2;
-  int g[2] = { 1, 4 };
+  int *g = malloc(sizeof(int) * 1000);
+  int m = 0;
+  int h = 0;
+  for (h = 0; (h <= n) && (m <= 1000); ) {
+    h = 3 * h + 1;
+    g[m] = h;
+    m++;
+  }
+  g = realloc(g, sizeof(int) * m);
+
   for (int i = m - 1; i >= 0; i--) {
     sort_internal(a, n, g[i]);
   }
