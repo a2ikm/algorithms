@@ -22,13 +22,18 @@ void sort_internal(int *a, int n, int g) {
 }
 
 void sort(int *a, int n) {
-  int *g = malloc(sizeof(int) * 1000);
+  int w = 1000;
+  int *g = malloc(sizeof(int) * w);
   int m = 0;
   int h = 0;
-  for (h = 0; (h <= n) && (m <= 1000); ) {
+  for (h = 0; h <= n; ) {
     h = 3 * h + 1;
     g[m] = h;
     m++;
+    if (m >= w) {
+      w *= 2;
+      g = realloc(g, sizeof(int) * w);
+    }
   }
   g = realloc(g, sizeof(int) * m);
 
